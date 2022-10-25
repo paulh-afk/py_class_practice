@@ -6,6 +6,17 @@ class Dog:
         self.is_friendly = input_friendliness
         self.friends = []
 
+    def __repr__(self):
+        description = 'This {breed} named {name} is {age} years old and has {number_of_friends} friends. '.format(
+            breed=self.breed, name=self.name, age=self.age, number_of_friends=len(self.friends))
+
+        if self.is_friendly:
+            description += '{} is a friendly dog.'.format(self.name)
+        else:
+            description += '{} is an unfriendly dog.'.format(self.name)
+
+        return description
+
     def have_birthday(self):
         self.age += 1
         print(self.name, 'is now', self.age, 'yo!')
@@ -29,3 +40,7 @@ dog_three = Dog('Tik', 'Australian Shepherd', 2, False)
 
 dog_one.become_friends(dog_two)
 dog_one.become_friends(dog_three)
+
+print(dog_one)
+print(dog_two)
+print(dog_three)
