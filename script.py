@@ -10,21 +10,22 @@ class Dog:
         self.age += 1
         print(self.name, 'is now', self.age, 'yo!')
 
-    def add_friend(self, dog):
-        if dog.is_friendly:
-            self.friends.append(dog)
+    def become_friends(self, other_dog):
+        if other_dog.is_friendly:
+            self.friends.append(other_dog)
+            other_dog.friends.append(self)
 
-    def friends_list(self):
-        for dog in self.friends:
-            print(dog.name, 'is a friend of', self.name,
-                  'and he is', self.age, 'yo')
+            print('{name} is a friend of {other_name} who is {other_age} yo!'.format(
+                name=self.name, other_name=other_dog.name, other_age=other_dog.age))
+
+        else:
+            print("{other_name} did not want to become friends with {name}!".format(
+                name=self.name, other_name=other_dog.name))
 
 
 dog_one = Dog('Medor', 'Golden Retriever', 9, True)
 dog_two = Dog('Huck', 'Akita', 2, True)
-dog_three = Dog('Tik', 'Australian Shepherd', 2, True)
+dog_three = Dog('Tik', 'Australian Shepherd', 2, False)
 
-dog_one.add_friend(dog_two)
-dog_one.add_friend(dog_three)
-
-dog_one.friends_list()
+dog_one.become_friends(dog_two)
+dog_one.become_friends(dog_three)
